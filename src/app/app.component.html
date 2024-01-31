@@ -9,11 +9,6 @@
       <p routerLink="/search">Search</p>
     </div>
 
-    <div class="link-wrapper" mat-button>
-      <mat-icon svgIcon="EMPTY_FAVORITE"></mat-icon>
-      <p routerLink="/favorites">Favorites</p>
-    </div>
-
     <mat-slide-toggle id="slide-toggle" (click)="changeTemperatureUnit()">
       <label>
         Temperature in Fahrenheit
@@ -25,5 +20,3 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
-<ng-snotify></ng-snotify>

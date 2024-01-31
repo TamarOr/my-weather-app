@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { FavoritesPage } from './weather/weather/pages/favorites/favorites.page';
+import { RouterModule, Routes } from '@angular/router';
 import { SearchPage } from './weather/weather/pages/search/search.page';
 
 
@@ -12,10 +11,6 @@ const routes: Routes = [
   {
     path: 'search/:locationKey', 
     component: SearchPage,
-  },
-  {
-    path: 'favorites',
-    component: FavoritesPage,
   },
   { path: '', redirectTo: 'search', pathMatch: 'full' },
 ];

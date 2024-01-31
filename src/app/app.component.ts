@@ -24,6 +24,6 @@ export class AppComponent implements OnInit {
   changeTemperatureUnit() {
     this.weatherService.isMetric = !this.weatherService.isMetric;
 
-    this.weatherService.temperatureUnitChanged.next();
+    this.weatherService.temperatureUnitChanged.next(null);
   }
 }
