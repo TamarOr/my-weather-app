@@ -70,11 +70,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "weather-app:build"
+            "buildTarget": "weather-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "weather-app:build:production"
+              "buildTarget": "weather-app:build:production"
             }
           }
         },
