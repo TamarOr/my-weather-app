@@ -11,6 +11,7 @@ import { WeatherService } from './core/services/weather.service';
 })
 export class AppComponent implements OnInit {
   displayLoading = false;
+  checked:boolean;
     
   constructor(private loaderService: LoaderService, private weatherService: WeatherService) {}
 

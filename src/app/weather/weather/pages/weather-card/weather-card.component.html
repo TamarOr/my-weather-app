@@ -1,0 +1,75 @@
+<p-card *ngIf="location()" class="weather-card">
+    <ng-template pTemplate="content">
+        <div class="weather-layout">
+
+            <div class="current-weather">
+                <h2 class="temperature">
+                    <i [ngClass]="selectedWeather()?.IsDayTime ? 'pi pi-sun sun-animation' : 'pi pi-moon moon-animation'"
+                        class="day-night-icon">
+                    </i>
+                    {{ temp() ? temp() : selectedWeather()?.Temperature?.Metric?.Value }}{{unit()}}
+                </h2>
+                <div class="weather-info">
+                    <img class="weather-icon"
+                        [src]="'https://www.accuweather.com/images/weathericons/' + selectedWeather()?.WeatherIcon + '.svg'"
+                        alt="Weather Icon">
+                    <p class="weather-text">{{ selectedWeather()?.WeatherText }}</p>
+                </div>
+                <p class="location-text">
+                    {{ location()?.LocalizedName }}, {{ location()?.Country?.LocalizedName }}
+                </p>
+                <p class="datetime">
+                    {{ selectedWeather()?.LocalObservationDateTime | date: 'dd MMMM yyyy' }} |
+                    {{ selectedWeather()?.LocalObservationDateTime | date: 'HH:mm' }}
+                </p>
+                <div class="links-container">
+                    <a href="{{ selectedWeather()?.MobileLink }}" target="_blank" class="link-item">
+                        <i class="pi pi-mobile"></i>
+                    </a>
+                    <a href="{{ selectedWeather()?.Link }}" target="_blank" class="link-item">
+                        <i class="pi pi-desktop"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="vertical-divider"></div>
+
+            <div class="forecast-grid">
+                <ng-container *ngFor="let day of selectedForecast?.DailyForecasts; let i = index">
+                    <div class="forecast-item" [class.full-width]="i === 4">
+                        <span class="forecast-date">{{ day.Date | date: 'EEE, dd/MM' }}</span>
+                        <img class="forecast-icon"
+                            [src]="'https://www.accuweather.com/images/weathericons/' + day.Day.Icon + '.svg'"
+                            alt="Weather Icon">
+                        <span class="forecast-text">{{ day.Day.IconPhrase }}</span>
+                        <span class="forecast-temp">
+                            {{ day.Temperature.Minimum.Value }}{{unit()}} - {{ day.Temperature.Maximum.Value }}{{unit()}}
+                        </span>
+
+                        <div class="forecast-links">
+                            <a href="{{ day.MobileLink }}" target="_blank" class="link-item">
+                                <i class="pi pi-mobile"></i>
+                            </a>
+                            <a href="{{ day.Link }}" target="_blank" class="link-item">
+                                <i class="pi pi-desktop"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <hr class="horizontal-divider">
+
+        <div class="clothing-suggestion">
+            <h2>Having a hard time choosing what to wear today?</h2>
+            <p-button label="Click me! I will help you😊" (click)="getRecommendation()"></p-button>
+        </div>
+
+    </ng-template>
+</p-card>
+
+<p-toast></p-toast>
+
+<app-wear-recommendation *ngIf="!location()" [currentWeather]="selectedWeather()"></app-wear-recommendation>

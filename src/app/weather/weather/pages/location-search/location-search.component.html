@@ -1,0 +1,11 @@
+<p-autocomplete [(ngModel)]="value" fluid [suggestions]="items" (completeMethod)="searchLocation($event)"
+    (onSelect)="onSelect($event)" optionLabel="LocalizedName" placeholder="🔎 Search your city">
+    <ng-template let-location pTemplate="item">
+        <div class="city-item">
+            <i [ngClass]="isFavorite(location) ? 'pi pi-heart-fill' : 'pi pi-heart'" class="favorite-icon"
+                (click)="toggleFavorite(location, $event)">
+            </i>
+            <span>{{ location.LocalizedName }}</span>
+        </div>
+    </ng-template>
+</p-autocomplete>

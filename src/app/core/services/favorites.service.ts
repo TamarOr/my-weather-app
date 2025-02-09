@@ -19,4 +19,8 @@ export class FavoritesService {
   getFavorites(): Location[] {
     return this.favorites;
   }
+
+  isFavorite(location: Location): boolean {
+    return this.favorites.some(fav => fav.Key === location.Key);
+  }
 }

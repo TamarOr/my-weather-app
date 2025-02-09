@@ -4,16 +4,15 @@
   <div id="sidenav-container">
     <h1>WeatherMe</h1>
 
-    <div class="link-wrapper">
-      <mat-icon svgIcon="SEARCH"></mat-icon>
-      <p routerLink="/search">Search</p>
+    <div class="label-toggle-container">
+      <label>Temperature in Fahrenheit</label>
+      <p-toggleswitch [(ngModel)]="checked" (onChange)="changeTemperatureUnit()">
+        <ng-template #handle let-checked="checked">
+          <i [ngClass]="['!text-xs', 'pi', checked ? 'pi-check' : 'pi-times']"></i>
+        </ng-template>
+      </p-toggleswitch>
     </div>
 
-    <mat-slide-toggle id="slide-toggle" (click)="changeTemperatureUnit()">
-      <label>
-        Temperature in Fahrenheit
-      </label>
-    </mat-slide-toggle>
   </div>
 
   <div id="content-wrapper">
